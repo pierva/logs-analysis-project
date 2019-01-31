@@ -6,9 +6,9 @@ def get_articles():
     db = psycopg2.connect("dbname=news")
     cursor = db.cursor()
     cursor.execute(
-        "SELECT log.path, count(*) as num from log " +
-        "INNER JOIN articles ON (REPLACE(log.path, '/article/', '') = articles.slug) " +
-        "GROUP BY path order by num desc LIMIT 3")
+        "SELECT title, count(*) as num from articles " +
+        "JOIN log ON (REPLACE(log.path, '/article/', '') = articles.slug) " +
+        "GROUP BY title ORDER BY num DESC LIMIT 3")
     articles = cursor.fetchall()
     db.close()
     return articles
