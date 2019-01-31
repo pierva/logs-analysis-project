@@ -10,7 +10,10 @@ This project will answer these questions:
 3. On which days did more than 1% of requests lead to errors?
 
 ## Get started
-To run the project it is necessary to have postgres installed on your machine.
+To run the project it is necessary to have postgres installed on your machine and have downloaded the newsdata.sql file from Udacity.
+The file is not included in the repository due its size.
+
+The project can be donwloaded from [GitHub](https://github.com/pierva/logs-analysis-project.git)
 
 ### Installing Postgres with Brew
 
