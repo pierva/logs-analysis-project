@@ -29,7 +29,7 @@ $ alias pg_stop='g_ctl -D /usr/local/var/postgres stop'
 ```
 Also, you can save these aliasas in your .bash_profile to make them availabe to every new terminal.
 
-Further instructions on how to install postres can be found [here](https://gist.github.com/ibraheem4/ce5ccd3e4d7a65589ce84f2a3b7c23a3).
+Further instructions on how to install postgres can be found [here](https://gist.github.com/ibraheem4/ce5ccd3e4d7a65589ce84f2a3b7c23a3).
 
 After installing postgres on your machine you can create the "postgres" and "vagrant" roles with the following command:
 ```sh
