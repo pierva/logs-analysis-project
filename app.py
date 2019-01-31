@@ -15,19 +15,29 @@ while True:
         break
     else:
         if selection == "1":
-            articles = get_articles()
-            for article in articles:
-                print("%s - %s views" % (article[0], article[1]))
+            try:
+                articles = get_articles()
+                for article in articles:
+                    print("%s - %s views" % (article[0], article[1]))
+            except Exception as e:
+                print("Error. Unable to answer your question.")
             print()
         elif selection == "2":
-            authors = get_popular_author()
-            for author in authors:
-                print("%s - %s views" % (author[0], author[1]))
+            try:
+                authors = get_popular_author()
+                for author in authors:
+                    print("%s - %s views" % (author[0], author[1]))
+            except Exception as e:
+                print("Error. Unable to answer your question.")
             print()
         elif selection == "3":
-            errorDay = get_errors()
-            percentage = "{:.1f}".format((errorDay[0][1] * 100)/errorDay[0][2])
-            print(errorDay[0][0].strftime("%B %d, %Y") + " - " +
-                  percentage + "% errors\n")
+            try:
+                errorDay = get_errors()
+                percentage = "{:.1f}".format((errorDay[0][1] * 100)/errorDay[0][2])
+                print(errorDay[0][0].strftime("%B %d, %Y") + " - " +
+                percentage + "% errors\n")
+            except Exception as e:
+                print("Error. Unable to answer your question.")
+            print()
         else:
-            print("Sorry, I didn't get your question. Try again.")
+            print("Sorry, I didn't get your question. Try again.\n")

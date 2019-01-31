@@ -1,16 +1,25 @@
 import psycopg2
 
+def connect(database_name="news"):
+    try:
+        db = psycopg2.connect("dbname={}".format(database_name))
+        cursor = db.cursor()
+        return db, cursor
+    except psycopg2.DatabaseError as e:
+        print("An error occurred while trying connecting to the database.")
+        print(e)
+
 
 # What are the most popular three articles of all time?
 def get_articles():
-    db = psycopg2.connect("dbname=news")
-    cursor = db.cursor()
-    cursor.execute(
-        "SELECT title, count(*) as num FROM articles " +
-        "JOIN log ON (REPLACE(log.path, '/article/', '') = articles.slug) " +
-        "WHERE log.status='200 OK' AND log.method='GET' " +
-        "GROUP BY title ORDER BY num DESC LIMIT 3"
-    )
+    db, cursor = connect()
+    query = """
+        SELECT title, count(*) as num FROM articles
+        JOIN log ON (REPLACE(log.path, '/article/', '') = articles.slug)
+        WHERE log.status='200 OK' AND log.method='GET'
+        GROUP BY title ORDER BY num DESC LIMIT 3
+        """
+    cursor.execute(query)
     articles = cursor.fetchall()
     db.close()
     return articles
@@ -18,8 +27,7 @@ def get_articles():
 
 # Who are the most popular article authors of all time?
 def get_popular_author():
-    db = psycopg2.connect("dbname=news")
-    cursor = db.cursor()
+    db, cursor = connect()
     cursor.execute(
         "SELECT name, count(*) as num FROM authors " +
         "INNER JOIN articles ON (authors.id = articles.author) " +
@@ -33,8 +41,7 @@ def get_popular_author():
 
 # On which days did more than 1% of requests lead to errors?
 def get_errors():
-    db = psycopg2.connect("dbname=news")
-    cursor = db.cursor()
+    db, cursor = connect()
     cursor.execute(
         "CREATE VIEW total_req AS " +
         "SELECT date(time), count(*) as total from log " +
