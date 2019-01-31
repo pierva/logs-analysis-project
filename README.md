@@ -74,3 +74,34 @@ The first view will have the date and the total requests per each day.
 The second view, instead, will have the date and the total error requests per each day.
 By joining the two tables by date, we can compare the number of errors wih the total requests per each day and output the day with more than 1% of errors.
 The method to run the third query is: `get_errors()`
+
+______
+## Project output example
+
+```sh
+Piervalerio (master) Project1
+$ python3 app.py
+Please choose from these questions:
+1 - What are the most popular three articles of all time?
+2 - Who are the most popular article authors of all time?
+3 - On which days did more than 1% of requests lead to errors?
+Enter q or quit to exit.
+
+Enter your selection (num): 1
+Candidate is jerk, alleges rival - 338647 views
+Bears love berries, alleges bear - 253801 views
+Bad things gone, say good people - 170098 views
+
+Enter your selection (num): 2
+Ursula La Multa - 507594 views
+Rudolf von Treppenwitz - 423457 views
+Anonymous Contributor - 170098 views
+Markoff Chaney - 84557 views
+
+Enter your selection (num): 3
+July 17, 2016 - 2.3% errors
+
+Enter your selection (num): q
+Goodbye.
+
+```
